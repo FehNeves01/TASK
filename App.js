@@ -15,11 +15,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Task"     component={Task}    options={{ headerTintColor: "#172051"}} />
+        <Stack.Screen name="Task"     component={Task}    options={{ headerTintColor: "#172051", headerLeft:null}} />
         <Stack.Screen name="NewTask"  component={NewTask} options={{ headerTintColor: "#172051" }} />
         <Stack.Screen name="Details"  component={Details} options={{ headerTintColor: "#172051" }} />
-        <Stack.Screen name="Login"    component={Login}   options={{ headerTintColor: "#172051"}} />
-        <Stack.Screen name="NewUser"  component={NewUser} options={{ headerTintColor: "#172051" }} />
+        <Stack.Screen name="Login"    component={Login}   options={{ headerShown:false}} />
+        <Stack.Screen name="NewUser"  component={NewUser} options={{ headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

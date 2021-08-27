@@ -9,12 +9,11 @@ export default function Details({ navigation, route } ) {
   const [idTask, setIdTask]=useState(route.params.id);
   
   function editTask(id){
-    console.log(id)
-    database.collection("Tasks").doc(id).update({
+    database.collection(route.params.idUser).doc(id).update({
       description:descriptionEdit,
       status: false
     })
-    navigation.navigate('Task');
+    navigation.navigate('Task', {idUser: route.params.idUser});
   }
   return (
     <View style={styles.container}>

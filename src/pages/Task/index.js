@@ -5,23 +5,31 @@ import style from "./style";
 
 // Nativo do Expo
 //Importacao de Icones
-import { FontAwesome } from '@expo/vector-icons'
+import { FontAwesome , MaterialCommunityIcons} from '@expo/vector-icons'
 
 
 
-export default function Task({ navigation }) {
+export default function Task({ navigation , route}) {
     const [task, setTask] = useState([]);
     const database = firebase.firestore();
+
+    function logout() {
+        firebase.auth().signOut().then(() => {
+            navigation.navigate("Login");
+          }).catch((error) => {
+            // An error happened.
+          });
+          
+    }
     function deleteTask(id) {
-        console.log(id);
-        database.collection("Tasks").doc(id).delete();
+        database.collection(route.params.idUser).doc(id).delete();
     }
 
     useEffect(() => {
         //onSnapshot é uma funcao que escuta todas as alteracoes do banco, e ja atualiza o front
         // ta facil de entender
         // ta consultando o back do firebase na colecao Tasks
-        database.collection("Tasks").onSnapshot((query) => {
+        database.collection(route.params.idUser).onSnapshot((query) => {
             const list = []
             query.forEach((doc) => {
                 list.push({ ...doc.data(), id: doc.id });
@@ -44,7 +52,8 @@ export default function Task({ navigation }) {
                             onPress={() =>
                                 navigation.navigate("Details", {
                                     id: item.id,
-                                    description: item.description
+                                    description: item.description,
+                                    idUser: route.params.idUser
                                 })
                             }
                         >
@@ -66,8 +75,12 @@ export default function Task({ navigation }) {
 
             />
             <TouchableOpacity style={style.buttonNewTask}
-                onPress={() => navigation.navigate("NewTask")}>
+                onPress={() => navigation.navigate("NewTask", {idUser: route.params.idUser})}>
                 <Text style={style.iconButton}>+</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={style.buttonLogout}
+                onPress={() => logout()}>
+                <MaterialCommunityIcons name="logout" size={40} color="#FFF" />
             </TouchableOpacity>
 
         </View>

@@ -39,9 +39,23 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center",
   },
+  buttonLogout:{
+    width: 60,
+    height: 60,
+    bottom:30,
+    right:20,
+    position:"absolute",
+    backgroundColor:"#172051",
+    borderRadius:50,
+    justifyContent:"center",
+    alignItems:"center",
+    paddingLeft:5,
+  },
   iconButton:{
+    marginTop:-5,
+    marginLeft:2,
     color:"#FFFF",
-    fontSize:20,
+    fontSize:40,
 
   },
 })
