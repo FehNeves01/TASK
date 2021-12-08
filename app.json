@@ -16,14 +16,19 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+
     "ios": {
+      "bundleIdentifier": "com.fehneves.TASK",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#172051"
       },
+      "googleServicesFile": "./google-services.json",
       "package": "com.fehneves.TASK"
     },
     "web": {
